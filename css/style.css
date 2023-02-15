@@ -1,0 +1,345 @@
+html {
+   box-sizing: border-box;
+   font-size: 10px;
+   background: #ffc600;
+}
+
+*,
+*:before,
+*:after {
+   box-sizing: inherit;
+}
+
+body {
+   padding: 0;
+   margin: 0;
+   font-family: "Amatic SC", cursive;
+}
+
+h1 {
+   text-align: center;
+   font-size: 10rem;
+   line-height: 1;
+   margin: 0;
+   padding: 50px 0 10px 0;
+}
+
+.score {
+   background: rgba(255, 255, 255, 0.2);
+   padding: 0 3rem;
+   line-height: 1;
+   border-radius: 1rem;
+}
+
+.display {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.display__time-left {
+   margin: 0;
+   margin-bottom: 15px;
+
+   font-weight: 400;
+   font-size: 6rem;
+   color: #000;
+   text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.display__time-left span {
+   font-weight: 700;
+}
+
+.buttons {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   column-gap: 20px;
+   row-gap: 10px;
+}
+.btn {
+   display: inline-block;
+   padding: 20px 70px;
+
+   font-size: 26px;
+   cursor: pointer;
+   background: rgba(255, 255, 255, 0.2);
+   outline: 0;
+   border: 0;
+   border-radius: 20px;
+   transition: all 0.2s ease 0s;
+}
+.btn:hover {
+   color: #fff;
+   background: rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 767px) {
+   .buttons {
+      margin-bottom: 16px;
+   }
+   .btn {
+      padding: 20px 40px;
+   }
+}
+
+.form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   column-gap: 20px;
+   row-gap: 10px;
+   height: 80px;
+}
+.form .level {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+}
+.form .level .radio {
+   /* Add if not using autoprefixer */
+   -webkit-appearance: none;
+   /* Remove most all native input styles */
+   appearance: none;
+   /* For iOS < 15 */
+   margin: 0;
+
+   color: rgba(0, 0, 0, 0.5);
+   width: 1.15em;
+   height: 1.15em;
+   font-size: 16px;
+   border: 0.15em solid rgba(0, 0, 0, 0.5);
+   border-radius: 50%;
+
+   display: grid;
+   place-content: center;
+}
+.form .level .radio::before {
+   content: "";
+   width: 0.65em;
+   height: 0.65em;
+
+   border-radius: 50%;
+   transform: scale(0);
+   transition: 120ms transform ease-in-out;
+   box-shadow: inset 1em 1em rgba(0, 0, 0, 0.5);
+   /* Windows High Contrast Mode */
+   background-color: rgba(0, 0, 0, 0.5);
+}
+.form .level .radio:checked::before {
+   transform: scale(1);
+}
+.form .level .radio:checked {
+   outline: max(2px, 0.15em) solid rgba(0, 0, 0, 0.5);
+   outline-offset: max(2px, 0.15em);
+}
+.form label {
+   font-size: 3.6rem;
+   font-weight: 900;
+}
+
+.game {
+   width: 600px;
+   height: 400px;
+   display: flex;
+   flex-wrap: wrap;
+   margin: 0 auto 70px auto;
+}
+
+.hole {
+   flex: 1 0 33.33%;
+   height: 175px;
+   overflow: hidden;
+   position: relative;
+}
+
+.hole:after {
+   display: block;
+   background: url("../img/dirt.svg") bottom center no-repeat;
+   background-size: contain;
+   content: "";
+   width: 100%;
+   height: 70px;
+   position: absolute;
+   z-index: 2;
+   bottom: -30px;
+}
+
+.mole {
+   background: url("../img/mole.svg") bottom center no-repeat;
+   background-size: 60%;
+   position: absolute;
+   top: 100%;
+   width: 100%;
+   height: 100%;
+   transition: all 0.4s;
+}
+
+.hole.up .mole {
+   top: 0;
+}
+
+.best-attempts {
+   margin-bottom: 20px;
+}
+
+.best-attempts__info-block {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   padding: 0 20px;
+}
+
+.best-attempts__title {
+   text-align: center;
+   font-size: 4.4rem;
+   font-weight: 700;
+}
+
+.delete-results {
+   padding: 35px;
+   height: 0;
+   line-height: 0px;
+}
+
+.best-attempts__items {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 20px;
+   display: none;
+   height: 500px;
+   overflow-y: scroll;
+
+   opacity: 0;
+   transition: all 0.3s ease 0s;
+}
+.best-attempts__items.active {
+   display: flex;
+}
+.best-attempts__items.active-shown {
+   opacity: 1;
+}
+.top-rated-text {
+   position: absolute;
+   bottom: 6%;
+   right: 8%;
+   transform: rotate(-10deg);
+
+   user-select: none;
+   font-size: 2.8rem;
+}
+
+.item-attempts {
+   position: relative;
+   padding: 40px;
+
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 15px;
+   color: #fff;
+}
+
+.item-attempts__text {
+   font-size: 2.8rem;
+   font-weight: 700;
+}
+
+.item-attempts__info {
+   font-size: 2.4rem;
+}
+
+.item-attempts__score {
+   padding: 5px;
+   margin-left: 6px;
+
+   font-size: 2.4rem;
+   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+   font-weight: 700;
+   color: #000;
+   background-color: #fff;
+   border-radius: 20px;
+}
+
+@media (max-width: 1140px) {
+   .best-attempts__items {
+      height: 350px;
+   }
+   .item-attempts {
+      padding: 25px;
+   }
+}
+
+@media (max-width: 992px) {
+   .game {
+      margin: 0 auto;
+   }
+   .hole {
+      height: 150px;
+   }
+   .mole {
+      background-size: 50%;
+   }
+   .best-attempts__title {
+      font-size: 4rem;
+      margin: 0;
+      margin-bottom: 24px;
+      margin-top: 24px;
+   }
+}
+
+@media (max-width: 767px) {
+   .wrapper {
+      padding: 0 10px;
+   }
+   h1 {
+      font-size: 6rem;
+   }
+   .display__time-left {
+      font-size: 5rem;
+      text-align: center;
+   }
+   .game {
+      margin: 20px auto 40px auto;
+      width: auto;
+      height: auto;
+      row-gap: 20px;
+   }
+   .hole {
+      flex-basis: 50%;
+      height: 140px;
+   }
+   .mole {
+      background-size: contain;
+   }
+   .best-attempts__info-block {
+      justify-content: center;
+   }
+   .delete-results {
+      margin-bottom: 30px;
+   }
+}
+@media (max-width: 489px) {
+   h1 {
+      font-size: 5rem;
+   }
+   .score {
+      padding: 0 15px;
+   }
+   .display__time-left {
+      line-height: 90%;
+   }
+   .game {
+      margin: 80px auto 40px auto;
+   }
+   .top-rated-text {
+      bottom: -11%;
+      right: 5%;
+      transform: rotate(0);
+   }
+}

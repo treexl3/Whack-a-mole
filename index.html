@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whack A Mole!</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <h1>Whack-a-mole! <span class="score">0</span></h1>
+    <div class="display">
+      <h2 class="display__time-left">You have 10 seconds to beat those moles</h2>
+    </div>
+    <div class="buttons">
+      <button class="btn-start btn" onClick="startGame()">Start!</button>
+      <button class="btn-end btn">End Game</button>
+    </div>
+    <form action="#" name="customForm" class="form">
+      <div class="form__first-level level">
+        <label for="radio1">Easy Level</label>
+        <input type="radio" checked data-min="600" data-max="1400" name="radioInput" class="radio" id="radio1">
+      </div>
+      <div class="form__second-level level">
+        <label for="radio2">Medium Level</label>
+        <input type="radio" data-min="250" data-max="650" name="radioInput" class="radio" id="radio2">
+      </div>
+      <div class="form__third-level level">
+        <label for="radio3">Expert Level</label>
+        <input type="radio" data-min="150" data-max="500" name="radioInput" class="radio" id="radio3">
+      </div>
+    </form>
+    <div class="game">
+      <div class="hole hole1">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole2">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole3">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole4">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole5">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole6">
+        <div class="mole"></div>
+      </div>
+    </div>
+    <div class="best-attempts">
+      <div class="best-attempts__info-block">
+        <h3 class="best-attempts__title">There're your best rusults of played games</h3>
+        <button type="button" class="delete-results btn" onClick="deleteResults()">Clear results</button>
+      </div>
+      <div class="best-attempts__items"></div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
